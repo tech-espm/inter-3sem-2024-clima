@@ -2,6 +2,10 @@
 
 class IndexRoute {
 	public async index(req: app.Request, res: app.Response) {
+		res.render("index/index");
+	}
+
+	public async grafico(req: app.Request, res: app.Response) {
 		let hoje = new Date();
 
 		let mes = hoje.getMonth() + 1;
@@ -13,7 +17,7 @@ class IndexRoute {
 			dia: (dia < 10 ? "0" + dia : dia)
 		};
 
-		res.render("index/index", opcoes);
+		res.render("index/grafico", opcoes);
 	}
 
 	public async sobre(req: app.Request, res: app.Response) {

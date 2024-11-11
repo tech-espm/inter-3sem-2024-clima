@@ -33,3 +33,41 @@ html, body {
 	color: white;
 	text-decoration: none;
 }
+.c1{
+    background-color: #fdc4cf;
+    color: black;
+    
+}
+.c2{
+    background-color: black;
+    color: #58bce4;
+}
+.c3{
+    background-color: #58bce4;
+    color: black;
+    padding: 40px;
+}
+.cor1{
+    color: #58bce4;
+}
+img{
+    max-width: 100%;
+    border-radius: 5px;
+}
+.margemGorda{
+    margin: 50px;
+}
+.margemMagra{
+    margin: 20px;
+}
+.fundoEscuro{
+    background-color: black;
+    color: white;
+}
+a{
+    font-size: 25px;
+}
+.textoCentral{
+    text-align: center;
+    text-orientation: mixed;
+}

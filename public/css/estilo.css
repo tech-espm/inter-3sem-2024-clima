@@ -74,3 +74,12 @@ a{
     text-align: center;
     text-orientation: mixed;
 }
+.texto-verde {
+    padding: 20px;
+    color: lime;
+    background-color: white;
+    background-size: cover;
+    background-position: center center;
+    margin: 35px,0px;
+}
+

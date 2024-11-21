@@ -1,6 +1,36 @@
 ﻿import app = require("teem");
 
 class IndexRoute {
+	@app.http.post()
+	public async inserirLeitura(req: app.Request, res: app.Response) {
+		let erro: string = null;
+
+		let leitura = req.body;
+
+		leitura.temperatura = parseFloat(leitura.temperatura);
+		leitura.umidade = parseFloat(leitura.umidade);
+		leitura.luminosidade = parseFloat(leitura.luminosidade);
+
+		if (!leitura) {
+			erro = "Dados inválidos";
+		} else if (isNaN(leitura.temperatura)) {
+			erro = "Temperatura inválida";
+		} else if (isNaN(leitura.umidade)) {
+			erro = "Umidade inválida";
+		} else if (isNaN(leitura.luminosidade)) {
+			erro = "Luminosidade inválida";
+		}
+
+		if (erro) {
+			res.status(400).json(erro);
+		} else {
+			await app.sql.connect(async (sql: app.Sql) => {
+				await sql.query("insert into leitura (temperatura, umidade, luminosidade, data) values (?, ?, ?, now())", [leitura.temperatura, leitura.umidade, leitura.luminosidade]);
+			});
+			res.status(204).end();
+		}
+	}
+
 	public async index(req: app.Request, res: app.Response) {
 		res.render("index/index");
 	}

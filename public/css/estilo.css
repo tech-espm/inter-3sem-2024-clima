@@ -34,21 +34,24 @@ html, body {
 	text-decoration: none;
 }
 .c1{
-    background-color: #fdc4cf;
-    color: black;
+    background-color: #FFE064;
+    color: #3b8d45;
     
 }
 .c2{
     background-color: black;
-    color: #58bce4;
+    color: #3b8d45;
 }
 .c3{
-    background-color: #58bce4;
+    background-color: #3b8d45;
     color: black;
     padding: 40px;
 }
 .cor1{
-    color: #58bce4;
+    color: #3b8d45;
+}
+.cor2{
+    color: #FFE064;
 }
 img{
     max-width: 100%;

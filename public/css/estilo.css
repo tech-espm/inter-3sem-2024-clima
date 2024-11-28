@@ -63,8 +63,6 @@ img{
 .fundoEscuro{
     background-color: black;
     color: white;
-}
-a{
     font-size: 25px;
 }
 .textoCentral{
@@ -78,5 +76,19 @@ a{
     background-size: cover;
     background-position: center center;
     margin: 35px,0px;
+}
+.texto-laranj {
+    padding: 20px;
+    color: orange;
+    background-color: red;
+    background-size: cover;
+    background-position: center center;
+    margin: 35px,0px;
+}
+.subtitulo-3 {
+    color: white;
+    font-weight: bold;
+    background: rgb(82, 82, 194);
+    margin: 35px, 0px;
 }
 

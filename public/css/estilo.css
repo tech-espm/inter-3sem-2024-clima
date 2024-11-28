@@ -84,4 +84,10 @@ h1, h2, h3, h4 {
     font-size: 30px;
     padding: 5px;
 }
+.texto-verde {
+    padding: 20px;
+    color: lime;
+    background-size: cover;
+    background-position: center center;
+}
 

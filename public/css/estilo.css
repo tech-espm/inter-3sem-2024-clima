@@ -78,6 +78,7 @@ img{
     background: rgb(82, 82, 194);
     margin: 35px, 0px;
     max-width: 35px;
+    text-align: left;
 }
 h1, h2, h3, h4 {
     font-size: 30px;

@@ -66,6 +66,8 @@ img{
 .fundoEscuro{
     background-color: black;
     color: white;
+}
+a{
     font-size: 25px;
 }
 .textoCentral{
@@ -87,11 +89,13 @@ h1, h2, h3, h4 {
 .texto-verde {
     padding: 20px;
     color: lime;
+    background-color: white;
     background-size: cover;
     background-position: center center;
     background-color: gray;
 }
 .noticias {
-    background: gray;
+    background: gray;   
+    margin: 35px,0px;
 }
 

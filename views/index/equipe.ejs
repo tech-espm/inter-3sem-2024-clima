@@ -1,3 +1,141 @@
+<style>
+    /* Reset básico */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    /* Estilo do corpo */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f1de;
+        background-image: url("/public/img/DALLE.webp");
+        background-size: cover;
+        background-attachment: fixed;
+        color: #333;
+    }
+
+    /* Estilo do cabeçalho */
+    header {
+        background-color: #3b8d45;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    header h1 {
+        font-size: 3em;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+    header p {
+        font-size: 1.2em;
+        margin-top: 5px;
+        color: #e0e0e0;
+    }
+
+    /* Ícone de Menu */
+    .menu-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 20px;
+    }
+    .menu-icon div {
+        width: 100%;
+        height: 4px;
+        background-color: #fff;
+        transition: transform 0.3s;
+    }
+
+    /* Estilo do conteúdo principal */
+    main {
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    /* Estilo das seções em layout alternado */
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+    }
+    section:nth-child(even) .postit {
+        order: 2;
+    }
+
+    /* Estilo dos post-its */
+    .postit {
+        background-color: #f9e27a;
+        border: 2px solid #d1b355;
+        padding: 20px;
+        margin: 10px;
+        flex: 1;
+        max-width: 400px;
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #333;
+        position: relative;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        transform: rotate(-2deg);
+    }
+    .postit h2 {
+        font-size: 1.6em;
+        color: #3b8d45;
+        margin-bottom: 10px;
+    }
+
+    /* Estilo das imagens */
+    .image-container {
+          flex: 1;
+        text-align: center;
+        padding: 20px;
+    }
+    .image-container img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        transform: rotate(1.5deg);
+    }
+
+    /* Estilo do rodapé */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+    }
+    footer p {
+        font-size: 0.9em;
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+        section {
+            flex-direction: column;
+        }
+        .image-container, .postit {
+            max-width: 100%;
+            transform: none;
+        }
+    }
+</style>
 <div>
         <h1 class="c3 textoCentral">
             <strong>Equipe</strong>
@@ -84,8 +222,8 @@
 
     <div class="margemGorda">
         <p>
-            <a>
-                A inspiração para este projeto surgiu da crescente preocupação com os impactos das mudanças climáticas e a frequência cada vez maior de desastres naturais em várias partes do mundo. Observamos que, ao longo dos últimos anos, eventos extremos como furacões, enchentes e secas têm causado prejuízos devastadores a comunidades, ecossistemas e economias.
+            <a class="c1">
+                A inspiração para este projeto surgiu da crescente preocupação com os impactos das <br> mudanças climáticas e a frequência cada vez maior de desastres naturais em várias partes do mundo. Observamos que, ao longo dos últimos anos, eventos extremos como furacões, enchentes e secas têm causado prejuízos devastadores a comunidades, ecossistemas e economias.
             </a>
         </p>
     </div> 
@@ -162,7 +300,7 @@
                     Tecnologias
                 </h2>
                 <p>
-                    
+                    As tecnologias desempenham um papel crucial em projetos de monitoramento climático, pois permitem a coleta, análise e interpretação precisa de dados em tempo real. Essas informações são essenciais para prever mudanças climáticas e identificar padrões que podem impactar a saúde pública e a gestão de recursos naturais.
                 </p>
             </div>
             <div class="col-sm-4">

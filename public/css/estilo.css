@@ -7,8 +7,15 @@ html, body {
 	min-height: 100vh;
 }
 
+body {
+    color: #333;
+    background-image: url("/public/img/DALLE.webp");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .limitador {
-	max-width: 1200px;
+	max-width: 900px;
 	margin: 0px auto;
 
 	/* Para fazer o rodapé ficar sempre na parte inferior da página ;) */
@@ -119,4 +126,87 @@ a{
 /* Espaçamento apenas entre o texto 1 e a imagem 2 */
 .linha .caixa.separada {
     margin-left: 10px; /* Espaço extra entre a segunda e terceira caixas */
+}
+/* Estilo do cabeçalho */
+header {
+    background-color: #3b8d45;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header h1 {
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0;
+}
+header p {
+    font-size: 1.2em;
+    margin-top: 5px;
+    color: #e0e0e0;
+}
+main {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+/* Estilo das seções em layout alternado */
+section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    align-items: center;
+}
+section:nth-child(even) .postit {
+    order: 2;
+}
+
+/* Estilo dos post-its */
+.postit {
+    background-color: #f9e27a;
+    border: 2px solid #d1b355;
+    padding: 20px;
+    margin: 10px;
+    flex: 1;
+    max-width: 400px;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #333;
+    position: relative;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    transform: rotate(-2deg);
+}
+.postit h2 {
+    font-size: 1.6em;
+    color: #3b8d45;
+    margin-bottom: 10px;
+}
+
+/* Estilo das imagens */
+.image-container {
+        flex: 1;
+    text-align: center;
+    padding: 20px;
+}
+.image-container img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    transform: rotate(1.5deg);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+    }
+    .image-container, .postit {
+        max-width: 100%;
+        transform: none;
+    }
 }

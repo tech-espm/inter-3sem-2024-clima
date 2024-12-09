@@ -1,174 +1,171 @@
-﻿<div class="container-fluid">
+﻿<header>
+    <div>
+        <h1>Clima Tact</h1>
+        <p>Dados por Dia</p>
+    </div>
+</header>
+<main>
+	<div class="container-fluid">
+		<section>
+			<div class="postit">
+				<form id="form">
+					<div class="form-group">
+						<label for="data">Data</label>
+						<input id="data" name="data" class="form-control" type="date" value="<%= ano %>-<%= mes %>-<%= dia %>" />
+					</div>
 
-	<h1>
-		Projeto
-	</h1>
-	
-	<div class="row">
-		<div class="col-sm-4">
-
-			<div class="card shadow my-4">
-				<div class="card-body">
-					<form id="form">
-						<div class="form-group">
-							<label for="data">Data</label>
-							<input id="data" name="data" class="form-control" type="date" value="<%= ano %>-<%= mes %>-<%= dia %>" />
-						</div>
-		
-						<button type="submit" class="btn btn-primary">Listar</button>
-					</form>
-				</div>
+					<button type="submit" class="btn btn-primary">Listar</button>
+				</form>
 			</div>
+		</section>
 
+		<div class="card shadow my-4">
+			<div class="card-body" id="div-grafico"></div>
 		</div>
+
 	</div>
 
-	<div class="card shadow my-4">
-		<div class="card-body" id="div-grafico"></div>
-	</div>
+	<script src="/public/js/jquery-validate/jquery.validate.min.js"></script>
+	<script src="/public/js/jquery-validate/additional-methods.min.js"></script>
+	<script src="/public/js/jquery-validate/localization/messages_pt_BR.min.js"></script>
+	<script type="text/javascript" src="/public/js/chart.js/chart.min.js"></script>
 
-</div>
+	<script type="text/javascript">
+		"use strict";
 
-<script src="/public/js/jquery-validate/jquery.validate.min.js"></script>
-<script src="/public/js/jquery-validate/additional-methods.min.js"></script>
-<script src="/public/js/jquery-validate/localization/messages_pt_BR.min.js"></script>
-<script type="text/javascript" src="/public/js/chart.js/chart.min.js"></script>
-
-<script type="text/javascript">
-	"use strict";
-
-	$("#form").validate({
-		rules: {
-			data: {
-				required: true
+		$("#form").validate({
+			rules: {
+				data: {
+					required: true
+				}
+			},
+			submitHandler: function () {
+				atualizarDados();
 			}
-		},
-		submitHandler: function () {
-			atualizarDados();
-		}
-	});
+		});
 
-	async function atualizarDados() {
-		let data = $("#data").val();
+		async function atualizarDados() {
+			let data = $("#data").val();
 
-		waitSwal();
+			waitSwal();
 
-		try {
+			try {
 
-			let response = await fetch("/obterDadosPorDia?data=" + encodeURIComponent(data));
+				let response = await fetch("/obterDadosPorDia?data=" + encodeURIComponent(data));
 
-			if (response.ok) {
+				if (response.ok) {
 
-				Swal.close();
+					Swal.close();
 
-				let div = document.getElementById("div-grafico");
-				div.innerHTML = '<canvas id="grafico-barras" style="height: 50vh;"></canvas>';
+					let div = document.getElementById("div-grafico");
+					div.innerHTML = '<canvas id="grafico-barras" style="height: 50vh;"></canvas>';
 
-				let labels = [], umidades = [], temperaturas = [], luminosidades = [];
+					let labels = [], umidades = [], temperaturas = [], luminosidades = [];
 
-				let dados = await response.json();
-				if (!dados || !dados.length) {
-					Swal.fire("Erro", "Sem dados na data especificada!", "error");
-					return;
-				}
+					let dados = await response.json();
+					if (!dados || !dados.length) {
+						Swal.fire("Erro", "Sem dados na data especificada!", "error");
+						return;
+					}
 
-				for (let i = 0; i < dados.length; i++) {
-					labels.push(dados[i].hora);
-					umidades.push(dados[i].umidade);
-					temperaturas.push(dados[i].temperatura);
-					luminosidades.push(dados[i].luminosidade);
-				}
+					for (let i = 0; i < dados.length; i++) {
+						labels.push(dados[i].hora);
+						umidades.push(dados[i].umidade);
+						temperaturas.push(dados[i].temperatura);
+						luminosidades.push(dados[i].luminosidade);
+					}
 
-				let grafico = new Chart(document.getElementById("grafico-barras"), {
-					type: "line", // "bar"
-					data: {
-						labels: labels,
-						datasets: [{
-							label: "Umidade",
-							backgroundColor: "#0066ff",
-							hoverBackgroundColor: "#0055ee",
-							borderColor: "#0055ee",
-							data: umidades,
-						}, {
-							label: "Temperatura",
-							backgroundColor: "#990000",
-							hoverBackgroundColor: "#880000",
-							borderColor: "#880000",
-							data: temperaturas,
-						}, {
-							label: "Luminosidade",
-							backgroundColor: "#ff9900",
-							hoverBackgroundColor: "#ee8800",
-							borderColor: "#ee8800",
-							data: luminosidades,
-						}],
-					},
-					options: {
-						maintainAspectRatio: false,
-						layout: {
-							padding: {
-								left: 10,
-								right: 25,
-								top: 25,
-								bottom: 0
-							}
+					let grafico = new Chart(document.getElementById("grafico-barras"), {
+						type: "line", // "bar"
+						data: {
+							labels: labels,
+							datasets: [{
+								label: "Umidade",
+								backgroundColor: "#0066ff",
+								hoverBackgroundColor: "#0055ee",
+								borderColor: "#0055ee",
+								data: umidades,
+							}, {
+								label: "Temperatura",
+								backgroundColor: "#990000",
+								hoverBackgroundColor: "#880000",
+								borderColor: "#880000",
+								data: temperaturas,
+							}, {
+								label: "Luminosidade",
+								backgroundColor: "#ff9900",
+								hoverBackgroundColor: "#ee8800",
+								borderColor: "#ee8800",
+								data: luminosidades,
+							}],
 						},
-						scales: {
-							x: {
-								gridLines: {
-									display: false,
-									drawBorder: false
-								},
-								ticks: {
-									maxTicksLimit: 10
-								},
-								maxBarThickness: 25,
-							},
-							y: {
-								//display: false,
-								ticks: {
-									min: 0,
-									max: 10,
-									maxTicksLimit: 10,
-									padding: 10
-								},
-								gridLines: {
-									color: "rgb(234, 236, 244)",
-									zeroLineColor: "rgb(234, 236, 244)",
-									drawBorder: false,
-									borderDash: [2],
-									zeroLineBorderDash: [2]
+						options: {
+							maintainAspectRatio: false,
+							layout: {
+								padding: {
+									left: 10,
+									right: 25,
+									top: 25,
+									bottom: 0
 								}
 							},
-						},
-						legend: {
-							display: false
-						},
-						tooltips: {
-							titleMarginBottom: 10,
-							titleFontColor: '#6e707e',
-							titleFontSize: 14,
-							backgroundColor: "rgb(255,255,255)",
-							bodyFontColor: "#858796",
-							borderColor: '#dddfeb',
-							borderWidth: 1,
-							xPadding: 15,
-							yPadding: 15,
-							displayColors: false,
-							caretPadding: 10
-						},
-					}
-				});
+							scales: {
+								x: {
+									gridLines: {
+										display: false,
+										drawBorder: false
+									},
+									ticks: {
+										maxTicksLimit: 10
+									},
+									maxBarThickness: 25,
+								},
+								y: {
+									//display: false,
+									ticks: {
+										min: 0,
+										max: 10,
+										maxTicksLimit: 10,
+										padding: 10
+									},
+									gridLines: {
+										color: "rgb(234, 236, 244)",
+										zeroLineColor: "rgb(234, 236, 244)",
+										drawBorder: false,
+										borderDash: [2],
+										zeroLineBorderDash: [2]
+									}
+								},
+							},
+							legend: {
+								display: false
+							},
+							tooltips: {
+								titleMarginBottom: 10,
+								titleFontColor: '#6e707e',
+								titleFontSize: 14,
+								backgroundColor: "rgb(255,255,255)",
+								bodyFontColor: "#858796",
+								borderColor: '#dddfeb',
+								borderWidth: 1,
+								xPadding: 15,
+								yPadding: 15,
+								displayColors: false,
+								caretPadding: 10
+							},
+						}
+					});
 
-			} else {
-				await exibirErro(response);
+				} else {
+					await exibirErro(response);
+				}
+
+			} catch (ex) {
+				Swal.fire("Erro", "Erro ao listar os dados: " + ex.message, "error");
 			}
-
-		} catch (ex) {
-			Swal.fire("Erro", "Erro ao listar os dados: " + ex.message, "error");
 		}
-	}
 
-	atualizarDados();
+		atualizarDados();
 
-</script>
+	</script>
+</main>

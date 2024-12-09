@@ -1,197 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clima Tact - Sobre Nós</title>
-    <style>
-        /* Reset básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        /* Estilo do corpo */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f1de;
-            background-image: url("/public/img/DALLE.webp");
-            background-size: cover;
-            background-attachment: fixed;
-            color: #333;
-        }
-
-        /* Estilo do cabeçalho */
-        header {
-            background-color: #3b8d45;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        header h1 {
-            font-size: 3em;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin: 0;
-        }
-        header p {
-            font-size: 1.2em;
-            margin-top: 5px;
-            color: #e0e0e0;
-        }
-
-        /* Ícone de Menu */
-        .menu-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 25px;
-            height: 20px;
-        }
-        .menu-icon div {
-            width: 100%;
-            height: 4px;
-            background-color: #fff;
-            transition: transform 0.3s;
-        }
-
-        /* Estilo do conteúdo principal */
-        main {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        /* Estilo das seções em layout alternado */
-        section {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-            align-items: center;
-        }
-        section:nth-child(even) .postit {
-            order: 2;
-        }
-
-        /* Estilo dos post-its */
-        .postit {
-            background-color: #f9e27a;
-            border: 2px solid #d1b355;
-            padding: 20px;
-            margin: 10px;
-            flex: 1;
-            max-width: 400px;
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #333;
-            position: relative;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-            transform: rotate(-2deg);
-        }
-        .postit h2 {
-            font-size: 1.6em;
-            color: #3b8d45;
-            margin-bottom: 10px;
-        }
-
-        /* Estilo das imagens */
-        .image-container {
-              flex: 1;
-            text-align: center;
-            padding: 20px;
-        }
-        .image-container img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-            transform: rotate(1.5deg);
-        }
-
-        /* Estilo do rodapé */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
-        }
-        footer p {
-            font-size: 0.9em;
-        }
-
-        /* Estilos responsivos */
-        @media (max-width: 768px) {
-            section {
-                flex-direction: column;
-            }
-            .image-container, .postit {
-                max-width: 100%;
-                transform: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <!-- Ícone de Menu (três barras) -->
-        <div class="menu-icon">
-            <div></div>
-            <div></div>
-            <div></div>
+<header>
+    <div>
+        <h1>Clima Tact</h1>
+        <p>Segurança e Sustentabilidade em Suas Mãos</p>
+    </div>
+</header>
+<main>
+    <!-- Primeira seção: post-it à esquerda, imagem à direita -->
+    <section id="sobre">
+        <div class="postit">
+            <h2>Sobre Nós</h2>
+            <p>A Clima Tact é uma empresa dedicada a fornecer soluções climáticas avançadas e acessíveis. Nossa missão é equipar a comunidade com ferramentas que garantam segurança climática, promovam a sustentabilidade e aumentem a conscientização ambiental.</p>
         </div>
-        <div>
-            <h1>Clima Tact</h1>
-            <p>Segurança e Sustentabilidade em Suas Mãos</p>
+        <div class="image-container">
+            <img src="/public/img/download.jpeg" alt="Pessoas plantando uma árvore">
         </div>
-    </header>
-    <main>
-        <!-- Primeira seção: post-it à esquerda, imagem à direita -->
-        <section id="sobre">
-            <div class="postit">
-                <h2>Sobre Nós</h2>
-                <p>A Clima Tact é uma empresa dedicada a fornecer soluções climáticas avançadas e acessíveis. Nossa missão é equipar a comunidade com ferramentas que garantam segurança climática, promovam a sustentabilidade e aumentem a conscientização ambiental.</p>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/download.jpeg" alt="Pessoas plantando uma árvore">
-            </div>
-        </section>
+    </section>
 
-        <!-- Segunda seção: imagem à esquerda, post-it à direita -->
-        <section>
-            <div class="image-container">
-                <img src="/public/img/pexels-bri-schneiter-28802-346529.jpg">
-            </div>
-            <div class="postit">
-                <h2>Nossa Missão</h2>
-                <p>Nossa estação meteorológica portátil é projetada para fornecer dados climáticos precisos e em tempo real, ajudando na proteção contra desastres naturais. Nosso objetivo é fortalecer a relação entre as pessoas e o ambiente, facilitando a tomada de decisões seguras e informadas.</p>
-            </div>
-        </section>
+    <!-- Segunda seção: imagem à esquerda, post-it à direita -->
+    <section>
+        <div class="image-container">
+            <img src="/public/img/pexels-bri-schneiter-28802-346529.jpg">
+        </div>
+        <div class="postit">
+            <h2>Nossa Missão</h2>
+            <p>Nossa estação meteorológica portátil é projetada para fornecer dados climáticos precisos e em tempo real, ajudando na proteção contra desastres naturais. Nosso objetivo é fortalecer a relação entre as pessoas e o ambiente, facilitando a tomada de decisões seguras e informadas.</p>
+        </div>
+    </section>
 
-        <!-- Terceira seção: post-it à esquerda, imagem à direita -->
-        <section>
-            <div class="postit">
-                <h2>O Futuro Verde</h2>
-                <p>Estamos comprometidos em desenvolver soluções que não apenas protejam a comunidade, mas também contribuam para um futuro mais verde e sustentável. A Clima Tact inova para criar um impacto positivo, promovendo práticas que respeitam e preservam o meio ambiente.</p>
-            </div>
-            <div class="image-container">
-                <img src="/public/img/fotos-de-paisagens-floresta-amazonica.jpg" alt="Imagem de uma floresta verde e sustentável">
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Clima Tact - Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+    <!-- Terceira seção: post-it à esquerda, imagem à direita -->
+    <section>
+        <div class="postit">
+            <h2>O Futuro Verde</h2>
+            <p>Estamos comprometidos em desenvolver soluções que não apenas protejam a comunidade, mas também contribuam para um futuro mais verde e sustentável. A Clima Tact inova para criar um impacto positivo, promovendo práticas que respeitam e preservam o meio ambiente.</p>
+        </div>
+        <div class="image-container">
+            <img src="/public/img/fotos-de-paisagens-floresta-amazonica.jpg" alt="Imagem de uma floresta verde e sustentável">
+        </div>
+    </section>
+</main>

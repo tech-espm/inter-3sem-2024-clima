@@ -35,7 +35,7 @@ class IndexRoute {
 		res.render("index/index");
 	}
 
-	public async grafico(req: app.Request, res: app.Response) {
+	public async dadosPorDia(req: app.Request, res: app.Response) {
 		let hoje = new Date();
 
 		let mes = hoje.getMonth() + 1;
@@ -47,7 +47,22 @@ class IndexRoute {
 			dia: (dia < 10 ? "0" + dia : dia)
 		};
 
-		res.render("index/grafico", opcoes);
+		res.render("index/dadosPorDia", opcoes);
+	}
+
+	public async dadosPorMes(req: app.Request, res: app.Response) {
+		let hoje = new Date();
+
+		let mes = hoje.getMonth() + 1;
+		let dia = hoje.getDate();
+
+		let opcoes = {
+			ano: hoje.getFullYear(),
+			mes: (mes < 10 ? "0" + mes : mes),
+			dia: (dia < 10 ? "0" + dia : dia)
+		};
+
+		res.render("index/dadosPorMes", opcoes);
 	}
 
 	public async sobre(req: app.Request, res: app.Response) {
@@ -82,6 +97,35 @@ class IndexRoute {
 				where data between ? and ?
 				group by hora
 				order by hora asc
+			`, [dataInicial, dataFinal]);
+		});
+
+		res.json(dados);
+	}
+
+	public async obterDadosPorMes(req: app.Request, res: app.Response) {
+		let mes = parseInt(req.query.mes as string);
+		let ano = parseInt(req.query.ano as string);
+
+		let dataInicial = `${ano}-${mes}-01 00:00:00`;
+		if (mes >= 12) {
+			ano++;
+			mes = 1;
+		} else {
+			mes++;
+		}
+		let dataFinal = `${ano}-${mes}-01 00:00:00`;
+
+		let dados: any[];
+
+		await app.sql.connect(async (sql: app.Sql) => {
+			dados = await sql.query(`
+				select avg(temperatura) temperatura, avg(umidade) umidade,
+				avg(luminosidade) luminosidade, extract(day from data) dia
+				from leitura
+				where data between ? and ?
+				group by dia
+				order by dia asc
 			`, [dataInicial, dataFinal]);
 		});
 

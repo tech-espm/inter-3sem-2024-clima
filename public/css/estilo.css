@@ -83,10 +83,8 @@ img{
 .container {
     max-width: 1100px;
     margin: 20px auto;
-    padding: 10px;
+    padding: 0;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .linha {
     display: flex;
@@ -95,10 +93,9 @@ img{
     margin-bottom: 30px; /* Espaço maior entre as linhas */
 }
 .caixa {
-    flex: 1 1 calc(23% - 10px); /* Cada caixa ocupa 23% da linha */
-    margin: 5px;
+    flex: 1 1 calc(23% - 5px); /* Cada caixa ocupa 23% da linha */
+    margin: 0; /* Remove margens entre caixas */
     border: 1px solid #ddd;
-    border-radius: 6px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -108,7 +105,7 @@ img{
 }
 .caixa.imagem {
     height: 120px;
-    background: url('https://via.placeholder.com/200x120') no-repeat center;
+    background: no-repeat center;
     background-size: cover;
 }
 .caixa.texto {
@@ -117,6 +114,7 @@ img{
     color: #333;
     font-size: 12px;
 }
-.caixa.separada {
-    margin-left: 10px; /* Espaço extra entre a segunda e a terceira caixas */
+/* Espaçamento apenas entre o texto 1 e a imagem 2 */
+.linha .caixa.separada {
+    margin-left: 10px; /* Espaço extra entre a segunda e terceira caixas */
 }

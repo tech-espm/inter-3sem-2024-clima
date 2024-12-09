@@ -82,17 +82,41 @@ a{
     max-width: 35px;
     text-align: left;
 }
-h1, h2, h3, h4 {
-    font-size: 30px;
-    padding: 5px;
-}
-.texto-verde {
-    padding: 20px;
-    color: lime;
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0;
     background-color: white;
-    background-size: cover;
-    background-position: center center;
-    background-color: rgb(201, 72, 72);
 }
-
-
+.linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 30px; /* Espaço maior entre as linhas */
+}
+.caixa {
+    flex: 1 1 calc(23% - 5px); /* Cada caixa ocupa 23% da linha */
+    margin: 0; /* Remove margens entre caixas */
+    border: 1px solid #ddd;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+.caixa.imagem {
+    height: 120px;
+    background: no-repeat center;
+    background-size: cover;
+}
+.caixa.texto {
+    padding: 10px;
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+}
+/* Espaçamento apenas entre o texto 1 e a imagem 2 */
+.linha .caixa.separada {
+    margin-left: 10px; /* Espaço extra entre a segunda e terceira caixas */
+}

@@ -66,19 +66,24 @@ class IndexRoute {
 		res.render("index/equipe", opcoes);
 	}
 
-	public async obterDados(req: app.Request, res: app.Response) {
-		let dados = [
-			{ dia: "10/09", valor: 80 },
-			{ dia: "11/09", valor: 92 },
-			{ dia: "12/09", valor: 90 },
-			{ dia: "13/09", valor: 101 },
-			{ dia: "14/09", valor: 105 },
-			{ dia: "15/09", valor: 100 },
-			{ dia: "16/09", valor: 64 },
-			{ dia: "17/09", valor: 78 },
-			{ dia: "18/09", valor: 93 },
-			{ dia: "19/09", valor: 110 }
-		];
+	public async obterDadosPorDia(req: app.Request, res: app.Response) {
+		let data = req.query.data as string;
+
+		let dataInicial = data + " 00:00:00";
+		let dataFinal = data + " 23:59:59";
+
+		let dados: any[];
+
+		await app.sql.connect(async (sql: app.Sql) => {
+			dados = await sql.query(`
+				select avg(temperatura) temperatura, avg(umidade) umidade,
+				avg(luminosidade) luminosidade, extract(hour from data) hora
+				from leitura
+				where data between ? and ?
+				group by hora
+				order by hora asc
+			`, [dataInicial, dataFinal]);
+		});
 
 		res.json(dados);
 	}

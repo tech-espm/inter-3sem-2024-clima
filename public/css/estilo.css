@@ -75,10 +75,10 @@ a{
     text-orientation: mixed;
 }
 .subtitulo-3 {
-    color: white;
+    color: black;
     font-weight: bold;
-    background: rgb(82, 82, 194);
-    margin: 35px, 0px;
+    background: rgb(199, 199, 210);
+    margin: 40px, 0px;
     max-width: 35px;
     text-align: left;
 }
@@ -92,10 +92,7 @@ h1, h2, h3, h4 {
     background-color: white;
     background-size: cover;
     background-position: center center;
-    background-color: gray;
+    background-color: rgb(201, 72, 72);
 }
-.noticias {
-    background: gray;   
-    margin: 35px,0px;
-}
+
 

@@ -191,6 +191,7 @@ section:nth-child(even) .postit {
     height: 120px;
     background: no-repeat center;
     background-size: cover;
+    background-image: url(https://llllline.com/images/thumbs/blue/blue-galaxy-background-video-footage-with-stars-0000047736-800.jpeg);
 }
 .caixa.texto {
     padding: 10px;

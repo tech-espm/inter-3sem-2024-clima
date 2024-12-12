@@ -81,12 +81,6 @@ a{
     text-align: center;
     text-orientation: mixed;
 }
-.container {
-    max-width: 1100px;
-    margin: 20px auto;
-    padding: 0;
-    background-color: white;
-}
 /* Estilo do cabeçalho */
 header {
     background-color: #3b8d45;

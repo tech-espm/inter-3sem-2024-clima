@@ -168,7 +168,6 @@ section:nth-child(even) .postit {
     max-width: 1100px;
     margin: 20px auto;
     padding: 0;
-    background-color: white;
 }
 .linha {
     display: flex;

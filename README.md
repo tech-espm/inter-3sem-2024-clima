@@ -1,4 +1,4 @@
-# Projeto Interdisciplinar II - Sistemas de Informação ESPM
+# Projeto Interdisciplinar III - Sistemas de Informação ESPM
 
 <p align="center">
     <a href="https://www.espm.br/cursos-de-graduacao/sistemas-de-informacao/"><img src="https://raw.githubusercontent.com/tech-espm/misc-template/main/logo.png" alt="Sistemas de Informação ESPM" style="width: 375px;"/></a>

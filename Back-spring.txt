@@ -1,0 +1,138 @@
+Back em springboot 
+
+isso seria a index.ts
+ 
+Parte do projeto em Spring boot do interdisciplinar :
+
+
+
+
+
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api")
+public class IndexController {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    // POST: Insert a new reading
+    @PostMapping("/inserirLeitura")
+    public ResponseEntity<?> inserirLeitura(@RequestBody Map<String, Object> leitura) {
+        try {
+            // Parse and validate input
+            Double temperatura = leitura.get("temperatura") != null ? Double.parseDouble(leitura.get("temperatura").toString()) : null;
+            Double umidade = leitura.get("umidade") != null ? Double.parseDouble(leitura.get("umidade").toString()) : null;
+            Double luminosidade = leitura.get("luminosidade") != null ? Double.parseDouble(leitura.get("luminosidade").toString()) : null;
+
+            if (temperatura == null || umidade == null || luminosidade == null) {
+                return ResponseEntity.badRequest().body("Dados inválidos");
+            }
+
+            // Insert into database
+            String sql = "INSERT INTO leitura (temperatura, umidade, luminosidade, data) VALUES (?, ?, ?, ?)";
+            jdbcTemplate.update(sql, temperatura, umidade, luminosidade, Timestamp.valueOf(LocalDateTime.now()));
+
+            return ResponseEntity.noContent().build();
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Valores inválidos");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro interno do servidor");
+        }
+    }
+
+    // GET: Render index page (placeholder for frontend integration)
+    @GetMapping("/")
+    public String index() {
+        return "index/index";
+    }
+
+    // GET: Render data by day page
+    @GetMapping("/dadosPorDia")
+    public Map<String, Object> dadosPorDia() {
+        LocalDateTime hoje = LocalDateTime.now();
+        return Map.of(
+                "ano", hoje.getYear(),
+                "mes", String.format("%02d", hoje.getMonthValue()),
+                "dia", String.format("%02d", hoje.getDayOfMonth())
+        );
+    }
+
+    // GET: Render data by month page
+    @GetMapping("/dadosPorMes")
+    public Map<String, Object> dadosPorMes() {
+        LocalDateTime hoje = LocalDateTime.now();
+        return Map.of(
+                "ano", hoje.getYear(),
+                "mes", String.format("%02d", hoje.getMonthValue()),
+                "dia", String.format("%02d", hoje.getDayOfMonth())
+        );
+    }
+
+    // GET: Render "Sobre" page
+    @GetMapping("/sobre")
+    public Map<String, String> sobre() {
+        return Map.of("titulo", "Sobre");
+    }
+
+    // GET: Render "Equipe" page
+    @GetMapping("/equipe")
+    public Map<String, String> equipe() {
+        return Map.of("titulo", "Equipe");
+    }
+
+    // GET: Get data by day
+    @GetMapping("/obterDadosPorDia")
+    public List<Map<String, Object>> obterDadosPorDia(@RequestParam String data) {
+        String dataInicial = data + " 00:00:00";
+        String dataFinal = data + " 23:59:59";
+
+        String sql = """
+                SELECT AVG(temperatura) AS temperatura, AVG(umidade) AS umidade,
+                       AVG(luminosidade) AS luminosidade, EXTRACT(HOUR FROM data) AS hora
+                FROM leitura
+                WHERE data BETWEEN ? AND ?
+                GROUP BY hora
+                ORDER BY hora ASC
+                """;
+
+        return jdbcTemplate.queryForList(sql, dataInicial, dataFinal);
+    }
+
+    // GET: Get data by month
+    @GetMapping("/obterDadosPorMes")
+    public List<Map<String, Object>> obterDadosPorMes(@RequestParam int mes, @RequestParam int ano) {
+        String dataInicial = String.format("%d-%02d-01 00:00:00", ano, mes);
+
+        if (mes >= 12) {
+            ano++;
+            mes = 1;
+        } else {
+            mes++;
+        }
+
+        String dataFinal = String.format("%d-%02d-01 00:00:00", ano, mes);
+
+        String sql = """
+                SELECT AVG(temperatura) AS temperatura, AVG(umidade) AS umidade,
+                       AVG(luminosidade) AS luminosidade, EXTRACT(DAY FROM data) AS dia
+                FROM leitura
+                WHERE data BETWEEN ? AND ?
+                GROUP BY dia
+                ORDER BY dia ASC
+                """;
+
+        return jdbcTemplate.queryForList(sql, dataInicial, dataFinal);
+    }
+}

@@ -176,6 +176,7 @@ section:nth-child(even) .postit {
     margin: 20px auto;
     padding: 0;
     background-color:aqua;
+    background-image: url("/public/img/DALLE.webp");
 }
 .linha {
     display: flex;
@@ -192,7 +193,7 @@ section:nth-child(even) .postit {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-image: url("/public/img/DALLE.webp");
     border-radius: 10px; /* Adiciona bordas arredondadas */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
 }

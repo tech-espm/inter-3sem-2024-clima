@@ -164,8 +164,50 @@ section:nth-child(even) .postit {
         transform: none;
     }
 }
+
+------ landingpage
 .subtitulo-2 {
     color: black;
     background: lime;
 
+}
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0;
+    background-color:aqua;
+}
+.linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 30px; /* Espaço maior entre as linhas */
+}
+.caixa {
+    flex: 1 1 calc(23% - 5px); /* Ajusta o tamanho e espaçamento */
+    margin: 0;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
+}
+.caixa.imagem {
+    height: 120px;
+    background: no-repeat center;
+    background-size: cover;
+}
+.caixa.texto {
+    padding: 10px;
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+}
+/* Espaçamento apenas entre o texto 1 e a imagem 2 */
+.linha .caixa.separada {
+    margin-left: 10px; /* Espaço extra entre a segunda e terceira caixas */
 }

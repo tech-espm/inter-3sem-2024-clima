@@ -168,6 +168,7 @@ section:nth-child(even) .postit {
     max-width: 1100px;
     margin: 20px auto;
     padding: 0;
+    background-image: url("/public/img/DALLE.webp");
 }
 .linha {
     display: flex;

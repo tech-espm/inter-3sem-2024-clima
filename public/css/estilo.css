@@ -201,3 +201,8 @@ section:nth-child(even) .postit {
 .linha .caixa.separada {
     margin-left: 10px; /* Espaço extra entre a segunda e terceira caixas */
 }
+.subtitulo-2 {
+    color: black;
+    background: lime;
+
+}

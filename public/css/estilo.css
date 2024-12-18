@@ -191,7 +191,7 @@ section:nth-child(even) .postit {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:white;
+    background-color:rgb(246, 220, 107);
     border-radius: 10px; /* Adiciona bordas arredondadas */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
 }

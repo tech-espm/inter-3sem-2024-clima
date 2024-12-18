@@ -41,6 +41,7 @@ body {
 	text-decoration: none;
 }
 .c1{
+    margin: 10px;
     background-color: #FFE064;
     color: #3b8d45;
     
@@ -209,4 +210,8 @@ section:nth-child(even) .postit {
 /* Espaçamento apenas entre o texto 1 e a imagem 2 */
 .linha .caixa.separada {
     margin-left: 10px; /* Espaço extra entre a segunda e terceira caixas */
+}
+.fontemenor{
+    font-size: small;
+    color: black;
 }

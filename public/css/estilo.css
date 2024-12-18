@@ -182,7 +182,6 @@ section:nth-child(even) .postit {
     justify-content: space-between;
     align-items: stretch;
     margin-bottom: 30px; /* Espaço maior entre as linhas */
-    background-image: url("/public/img/DALLE.webp");
 }
 .caixa {
     flex: 1 1 calc(23% - 5px); /* Ajusta o tamanho e espaçamento */
@@ -193,7 +192,7 @@ section:nth-child(even) .postit {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("/public/img/DALLE.webp");
+    background-color:white;
     border-radius: 10px; /* Adiciona bordas arredondadas */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
 }
